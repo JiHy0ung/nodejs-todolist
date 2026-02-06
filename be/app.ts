@@ -1,13 +1,20 @@
 import express from "express";
 import mongoose from "mongoose";
 import indexRouter from "./routes/index";
+import cors from "cors";
+
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use("/api", indexRouter);
 
-const mongoURI = `mongodb://localhost:27017/todo`;
+const mongoURI =
+  process.env.MONGODB_URI_PROD || "mongodb://localhost:27017/todo";
 
 mongoose
   .connect(mongoURI)
