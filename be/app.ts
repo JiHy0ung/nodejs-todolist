@@ -16,6 +16,8 @@ app.use("/api", indexRouter);
 const mongoURI =
   process.env.MONGODB_URI_PROD || "mongodb://localhost:27017/todo";
 
+const PORT = process.env.PORT || 5555;
+
 mongoose
   .connect(mongoURI)
   .then(() => {
@@ -25,6 +27,6 @@ mongoose
     console.log("DB connection fail", err);
   });
 
-app.listen(process.env.MONGODB_URI_PROD || 5555, () => {
+app.listen(PORT, () => {
   console.log("server on 5555");
 });
