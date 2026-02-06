@@ -25,6 +25,6 @@ mongoose
     console.log("DB connection fail", err);
   });
 
-app.listen(5555, () => {
+app.listen(process.env.MONGODB_URI_PROD || 5555, () => {
   console.log("server on 5555");
 });
