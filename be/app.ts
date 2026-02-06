@@ -8,8 +8,19 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-app.use(cors());
 
+app.use(
+  cors({
+    origin: [
+      "https://nodejs-todolist-phi.vercel.app",
+      "http://localhost:3000", // 로컬 개발용
+      "http://localhost:5173", // Vite 사용시
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use(express.json());
 app.use("/api", indexRouter);
 
