@@ -10,8 +10,12 @@ const taskController = {
       await newTask.save();
 
       res.status(200).json({ status: "ok", data: newTask });
-    } catch (err: any) {
-      res.status(400).json({ status: "fail", error: err.message });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        res.status(400).json({ status: "fail", error: err.message });
+      } else {
+        res.status(400).json({ status: "fail", error: "Unknown error" });
+      }
     }
   },
 
@@ -19,8 +23,12 @@ const taskController = {
     try {
       const taskList = await Task.find({}).select("-__v");
       res.status(200).json({ status: "ok", data: taskList });
-    } catch (err: any) {
-      res.status(400).json({ status: "fail", error: err.message });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        res.status(400).json({ status: "fail", error: err.message });
+      } else {
+        res.status(400).json({ status: "fail", error: "Unknown error" });
+      }
     }
   },
 
@@ -37,8 +45,12 @@ const taskController = {
       }
 
       res.status(200).json({ status: "ok", data: updatedTask });
-    } catch (err: any) {
-      res.status(400).json({ status: "fail", error: err.message });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        res.status(400).json({ status: "fail", error: err.message });
+      } else {
+        res.status(400).json({ status: "fail", error: "Unknown error" });
+      }
     }
   },
 
@@ -46,8 +58,12 @@ const taskController = {
     try {
       const deletedTask = await Task.findByIdAndDelete(req.params.id);
       res.status(200).json({ status: "ok", data: deletedTask });
-    } catch (err: any) {
-      res.status(400).json({ status: "fail", error: err.message });
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        res.status(400).json({ status: "fail", error: err.message });
+      } else {
+        res.status(400).json({ status: "fail", error: "Unknown error" });
+      }
     }
   },
 };
