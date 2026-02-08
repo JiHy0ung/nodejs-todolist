@@ -15,7 +15,18 @@ const userSchema = new mongoose_2.Schema({
     password: { type: String, required: true },
 }, { timestamps: true });
 userSchema.methods.generateToken = function () {
-    const token = jsonwebtoken_1.default.sign({ _id: this._id }, JWT_SECRET_KEY);
+    const token = jsonwebtoken_1.default.sign({ _id: this._id }, JWT_SECRET_KEY, {
+        expiresIn: "7d",
+    });
+    return token;
+};
+userSchema.methods.toJSON = function () {
+    const obj = this._doc;
+    delete obj.password;
+    delete obj.updatedAt;
+    delete obj.createdAt;
+    delete obj.__v;
+    return obj;
 };
 const User = mongoose_1.default.model("User", userSchema);
 exports.default = User;

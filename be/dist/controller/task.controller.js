@@ -13,7 +13,12 @@ const taskController = {
             res.status(200).json({ status: "ok", data: newTask });
         }
         catch (err) {
-            res.status(400).json({ status: "fail", error: err.message });
+            if (err instanceof Error) {
+                res.status(400).json({ status: "fail", error: err.message });
+            }
+            else {
+                res.status(400).json({ status: "fail", error: "Unknown error" });
+            }
         }
     },
     async getTask(req, res) {
@@ -22,7 +27,12 @@ const taskController = {
             res.status(200).json({ status: "ok", data: taskList });
         }
         catch (err) {
-            res.status(400).json({ status: "fail", error: err.message });
+            if (err instanceof Error) {
+                res.status(400).json({ status: "fail", error: err.message });
+            }
+            else {
+                res.status(400).json({ status: "fail", error: "Unknown error" });
+            }
         }
     },
     async updateTask(req, res) {
@@ -34,7 +44,12 @@ const taskController = {
             res.status(200).json({ status: "ok", data: updatedTask });
         }
         catch (err) {
-            res.status(400).json({ status: "fail", error: err.message });
+            if (err instanceof Error) {
+                res.status(400).json({ status: "fail", error: err.message });
+            }
+            else {
+                res.status(400).json({ status: "fail", error: "Unknown error" });
+            }
         }
     },
     async deleteTask(req, res) {
@@ -43,7 +58,12 @@ const taskController = {
             res.status(200).json({ status: "ok", data: deletedTask });
         }
         catch (err) {
-            res.status(400).json({ status: "fail", error: err.message });
+            if (err instanceof Error) {
+                res.status(400).json({ status: "fail", error: err.message });
+            }
+            else {
+                res.status(400).json({ status: "fail", error: "Unknown error" });
+            }
         }
     },
 };
