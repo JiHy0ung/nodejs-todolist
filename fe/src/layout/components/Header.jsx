@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router";
 
-const Header = ({ user }) => {
+const Header = ({ user, setUser }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (user) {
+      sessionStorage.removeItem("token");
+      setUser(null);
       navigate("/login");
     }
   };

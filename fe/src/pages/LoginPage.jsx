@@ -62,7 +62,7 @@ const LoginPage = ({ user, setUser }) => {
   }
 
   return (
-    <Container className="display-center">
+    <div className="display-center">
       <Form className="login-box" onSubmit={handleSubmit}>
         <h1>로그인</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -100,7 +100,7 @@ const LoginPage = ({ user, setUser }) => {
           </span>
         </div>
       </Form>
-    </Container>
+    </div>
   );
 };
 

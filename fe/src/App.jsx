@@ -40,12 +40,12 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<AppLayout user={user} />}>
+      <Route path="/" element={<AppLayout user={user} setUser={setUser} />}>
         <Route
           index
           element={
             <PrivateRoute user={user}>
-              <TodoListPage />
+              <TodoListPage user={user} />
             </PrivateRoute>
           }
         />

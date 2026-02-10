@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import TodoBoard from "../components/TodoBoard";
 
-const TodoListPage = () => {
+const TodoListPage = ({ user }) => {
   const [todoList, setTodoList] = useState([]);
   const [todoValue, setTodoValue] = useState();
 
@@ -69,6 +69,7 @@ const TodoListPage = () => {
 
   return (
     <Container>
+      <div className="greeting-text">어서오세요! {user.name}님!</div>
       <Row className="add-item-row">
         <Col xs={12} sm={10}>
           <input

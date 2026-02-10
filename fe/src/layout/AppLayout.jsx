@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
 import Header from "./components/Header";
 
-const AppLayout = ({ user }) => {
+const AppLayout = ({ user, setUser }) => {
   return (
     <div>
-      <Header user={user} />
+      <Header user={user} setUser={setUser} />
       <Outlet />
     </div>
   );
