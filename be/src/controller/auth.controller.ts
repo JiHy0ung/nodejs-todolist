@@ -28,7 +28,7 @@ const authController = {
     } catch (err) {
       res.status(400).json({
         status: "Token Verified Failed",
-        message: "Invalid token",
+        message: err,
       });
     }
   },
