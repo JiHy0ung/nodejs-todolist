@@ -50,5 +50,17 @@ const userController = {
             }
         }
     },
+    async getUser(req, res) {
+        try {
+            const id = req.userId;
+            const user = await User_1.default.findById(id);
+            if (!user)
+                throw new Error("유저를 찾을 수 없습니다.");
+            res.status(200).json({ status: "유저 찾기 성공", user });
+        }
+        catch (err) {
+            res.status(400).json({ status: "유저 착지 실패", err: err });
+        }
+    },
 };
 exports.default = userController;
