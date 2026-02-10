@@ -4,18 +4,16 @@ import Form from "react-bootstrap/Form";
 
 import api from "../utils/api";
 
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, Navigate } from "react-router";
 
 import { Alert, Container } from "react-bootstrap";
 
 import { AiFillWarning } from "react-icons/ai";
 
-const LoginPage = () => {
+const LoginPage = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
 
@@ -50,9 +48,18 @@ const LoginPage = () => {
       }
     } catch (err) {
       console.error("에러: ", err);
-      setError(err.error);
+      const message =
+        err.response?.data?.message ||
+        err.message ||
+        "로그인 중 오류가 발생했습니다";
+
+      setError(message);
     }
   };
+
+  if (user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container className="display-center">
