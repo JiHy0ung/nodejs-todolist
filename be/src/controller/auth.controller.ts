@@ -25,10 +25,10 @@ const authController = {
       req.userId = decoded._id;
 
       next();
-    } catch (err) {
+    } catch (err: any) {
       res.status(400).json({
         status: "Token Verified Failed",
-        message: err,
+        message: err.message,
       });
     }
   },
