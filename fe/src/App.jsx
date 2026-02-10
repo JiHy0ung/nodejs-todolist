@@ -9,9 +9,11 @@ import { useState, useEffect } from "react";
 import PrivateRoute from "./routes/PrivateRoute";
 
 import api from "./utils/api";
+import AppLayout from "./layout/AppLayout";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const getUser = async () => {
     try {
@@ -23,6 +25,8 @@ function App() {
     } catch (err) {
       console.error("getUser error:", err);
       setUser(null);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,23 +34,29 @@ function App() {
     getUser();
   }, []);
 
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <PrivateRoute user={user}>
-            <TodoListPage />
-          </PrivateRoute>
-        }
-      />
+      <Route path="/" element={<AppLayout user={user} />}>
+        <Route
+          index
+          element={
+            <PrivateRoute user={user}>
+              <TodoListPage />
+            </PrivateRoute>
+          }
+        />
 
-      <Route
-        path="/login"
-        element={<LoginPage user={user} setUser={setUser} />}
-      />
+        <Route
+          path="login"
+          element={<LoginPage user={user} setUser={setUser} />}
+        />
 
-      <Route path="/register" element={<RegisterPage />} />
+        <Route path="register" element={<RegisterPage />} />
+      </Route>
     </Routes>
   );
 }

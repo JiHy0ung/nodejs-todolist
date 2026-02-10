@@ -61,3 +61,24 @@ body {
   background-color: gainsboro;
   color: white;
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0.625rem 3rem;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.header-login-btn {
+  border: 1px solid black;
+  padding: 0.2rem 1rem;
+  border-radius: 1rem;
+  background-color: rgb(212, 243, 255);
+}
